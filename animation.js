@@ -7,7 +7,7 @@ const centerY = 360;    // y coordinate of center
 const R = 160;     // radius of crank
 const L = 640;          // coupler length
 
-const dtheta = -2 * Math.PI / 60;
+const dtheta = -2 * Math.PI / 360;
 
 // nothing changes of this object
 const wheel = {
@@ -56,14 +56,18 @@ const coupler = {
 }
 
 const slider = {
-    h: 20,
-    w: 40,
+    h: 80,
+    w: 160,
     x: function() {
-
+        return coupler.x2() - this.w/2;
+    },
+    y: function() {
+        return coupler.y2() - this.h/2;
     },
     draw: function() {
         ctx.beginPath();
-        ctx.rect()
+        ctx.rect(this.x(), this.y(), this.w, this.h);
+        ctx.stroke();
     }
 }
 
@@ -77,6 +81,8 @@ function draw() {
     crank.draw()
     // draw coupler
     coupler.draw();
+    // draw slider
+    slider.draw();
 
     raf = window.requestAnimationFrame(draw);
 }
