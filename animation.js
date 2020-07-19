@@ -7,7 +7,7 @@ const centerY = 360;    // y coordinate of center
 const R = 160;     // radius of crank
 const L = 640;          // coupler length
 
-const dtheta = -2 * Math.PI / 360;
+const dtheta = 2 * Math.PI / 360;
 
 // nothing changes of this object
 const wheel = {
@@ -77,7 +77,8 @@ function draw() {
     // draw the wheel
     wheel.draw();
     // draw crank
-    crank.theta += dtheta;
+    crank.theta = crank.theta > 2 * Math.PI ? 0: crank.theta + dtheta;
+
     crank.draw()
     // draw coupler
     coupler.draw();
